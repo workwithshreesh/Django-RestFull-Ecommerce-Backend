@@ -1,0 +1,6 @@
+-r base.txt
+ipython
+black
+pylint
+pytest
+django-debug-toolbar
