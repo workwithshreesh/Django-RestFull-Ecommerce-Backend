@@ -49,6 +49,7 @@ INSTALLED_APPS = [
 
 ]
 
+AUTH_USER_MODEL = 'users.UserRegister'
 
 
 REST_FRAMEWORK = {
@@ -56,6 +57,9 @@ REST_FRAMEWORK = {
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ],
 }
+
+
+
 
 
 MIDDLEWARE = [
