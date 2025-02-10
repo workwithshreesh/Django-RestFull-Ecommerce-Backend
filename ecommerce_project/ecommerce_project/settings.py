@@ -45,8 +45,18 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'rest_framework_simplejwt',
-    'users'
-
+    'apps.users',
+    'apps.products',
+    'apps.orders',
+    'apps.billings',
+    'apps.Cart',
+    'apps.customer_support',
+    'apps.delivery',
+    'apps.Common',
+    'apps.Inventory',
+    'apps.payments',
+    'apps.returnscustomer',
+    'apps.sentimentanalysis',
 ]
 
 AUTH_USER_MODEL = 'users.UserRegister'

@@ -1,5 +1,5 @@
 from django.db import models
-from ..orders.models import Orders
+from orders.models import Order
 
 # Column Name	Data Type	Description
 # id	Primary Key	Unique delivery ID
@@ -10,7 +10,7 @@ from ..orders.models import Orders
 # expected_date	Date	Expected delivery date
 
 class Delivery(models.Model):
-    order = models.OneToOneField(Orders, on_delete=models.CASCADE)
+    order = models.OneToOneField(Order, on_delete=models.CASCADE)
     delivery_address = models.TextField()
     delivery_date = models.DateField()
     delivery_status = models.CharField(max_length=50, choices=[
