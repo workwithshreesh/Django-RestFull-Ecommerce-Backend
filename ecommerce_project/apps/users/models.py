@@ -18,9 +18,12 @@ class CustomUserManager(BaseUserManager):
         if role != "SELLER":
             raise ValueError("The role must be seller")
         
-        user = self.create_user(email, first_name, last_name, phone_number, address, role, password)
+        email = self.normalize_email(email)
+        user = self.create_user(email=email, first_name=first_name, last_name=last_name, 
+                                phone_number=phone_number, address=address, role=role)
         user.is_staff = False
         user.is_superuser = False
+        user.set_password(password)
         user.save(using=self._db)
         return user
 

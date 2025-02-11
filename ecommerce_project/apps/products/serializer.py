@@ -1,16 +1,23 @@
 from rest_framework import serializers
-from .models import Products
+from products.models import Products, ProductCategory
+from users.serializer import UserRegisterSellerSerializer
 
-class ProductSerializerGet(serializers.ModelSerializer):
-    Seller = serializers.CharField("Seller.email")
+class ProductCategorySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ProductCategory
+        fields = ["Category_Name",]
+
+class ProductSellerSerializerGet(serializers.ModelSerializer):
+    category_name = serializers.CharField(source="Category.Category_Name")
+    Seller = UserRegisterSellerSerializer(read_only=True)
     class Meta:
         model = Products
         fields = ["Product_Id","Product_Name","Product_Description",
                   "Product_Price","Product_Stock_Quantity","Product_Image",
-                  "Category","Seller","Is_Active"]
+                  "category_name","Seller","Is_Active"]
         
 
-class ProductSerializerPost(serializers.ModelSerializer):
+class ProductSellerBuyerSerializer(serializers.ModelSerializer):
     class Meta:
         model = Products
         fields = ["Product_Id","Product_Name","Product_Description",

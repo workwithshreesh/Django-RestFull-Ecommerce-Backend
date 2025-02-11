@@ -58,3 +58,9 @@ class UserLoginSerializer(serializers.Serializer):
             "access": str(refresh.access_token),
             "message": "Login Successful",
         }
+
+
+class UserRegisterSellerSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = get_user_model()
+        fields = ["first_name", "last_name", "email", "phone_number", "address", "role"]

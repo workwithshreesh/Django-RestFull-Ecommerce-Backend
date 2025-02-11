@@ -34,7 +34,7 @@ class Products(models.Model):
     Product_Description = models.TextField(null=False)
     Product_Price = models.DecimalField(max_digits=10, null=False, decimal_places=2)
     Product_Stock_Quantity = models.IntegerField(null=False)
-    Product_Image = models.ImageField(upload_to='product_images/', null=True, blank=True)
+    Product_Image = models.ImageField(upload_to='static/product_images/', null=False)
     Category = models.ForeignKey(ProductCategory, on_delete=models.CASCADE)
     Created_At = models.DateTimeField(auto_now_add=True)
 
