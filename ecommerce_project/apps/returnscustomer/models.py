@@ -7,27 +7,47 @@ from products.models import Products
 
 
 class ReturnedRequestProduct(models.Model):
+    RETURN_STATUS_CHOICES = [
+        ('requested', 'Requested'),
+        ('approved', 'Approved'),
+        ('rejected', 'Rejected'),
+        ('completed', 'Completed')
+    ]
     Return_Request_Id = models.AutoField(primary_key=True)
-    Return_Request_Id = models.ForeignKey(get_user_model(),limit_choices_to={"role":"User"}, on_delete=models.CASCADE)
+    customer_id = models.ForeignKey(get_user_model(),limit_choices_to={"role":"User"}, on_delete=models.CASCADE)
     Order_Item_Id = models.ForeignKey(OrderItem, on_delete=models.CASCADE)
     Product_Id = models.ForeignKey(Products,on_delete=models.CASCADE)
     Return_Reason = models.TextField()
-    Return_Status = models.CharField(max_length=20)
+    Return_Status = models.CharField(max_length=20,choices=RETURN_STATUS_CHOICES)
     Requested_At = models.DateTimeField(auto_now_add=True)
     Updated_At = models.DateTimeField(auto_now=True)
+
+
+    def __str__(self):
+        return self.Return_Status
 
 
 
 
 class ReturnProducts(models.Model):
+    RETURN_STATUS_CHOICES = [
+        ('pending', 'Pending'),
+        ('in_transit', 'In Transit'),
+        ('received', 'Received'),
+        ('damaged', 'Damaged'),
+    ]
     Return_Entry_Id = models.AutoField(primary_key=True, null=False)
     Return_Request_Id = models.ForeignKey(ReturnedRequestProduct, on_delete=models.CASCADE)
     Product_Id = models.ForeignKey(Products,on_delete=models.CASCADE)
-    Return_Status = models.CharField(max_length=30)
+    Return_Status = models.CharField(max_length=30, choices=RETURN_STATUS_CHOICES)
     Seller_Confirmation = models.BooleanField(null=False)
     Return_Quantity = models.IntegerField(null=False)
     Return_Remark = models.TextField()
     Confirmed_At = models.DateTimeField(auto_now_add=True)
+
+
+    def __str__(self):
+        return self.Return_Status
 
 
 

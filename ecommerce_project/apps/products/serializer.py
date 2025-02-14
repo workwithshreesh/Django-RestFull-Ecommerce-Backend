@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from products.models import Products, ProductCategory
+from products.models import Products, ProductCategory, WishList
 from users.serializer import UserRegisterSellerSerializer
 
 class ProductCategorySerializer(serializers.ModelSerializer):
@@ -23,3 +23,10 @@ class ProductSellerBuyerSerializer(serializers.ModelSerializer):
         fields = ["Product_Id","Product_Name","Product_Description",
                   "Product_Price","Product_Stock_Quantity","Product_Image",
                   "Category","Seller","Is_Active"]
+        
+    
+
+class WishListSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = WishList
+        fields = ["user","product"]

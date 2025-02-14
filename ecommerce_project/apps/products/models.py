@@ -27,6 +27,10 @@ class ProductCategory(models.Model):
         verbose_name = "Product Category"
         verbose_name_plural = "Product Categories"
 
+    def __str__(self):
+        return self.Category_Name
+
+
 
 class Products(models.Model):
     Product_Id = models.AutoField(primary_key=True)
@@ -47,6 +51,9 @@ class Products(models.Model):
     class Meta:
         verbose_name = "Product"
         verbose_name_plural = "Products"
+
+    def __str__(self):
+        return self.Product_Name
 
     
 

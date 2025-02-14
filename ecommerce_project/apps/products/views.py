@@ -1,8 +1,8 @@
 from rest_framework import generics
-from products.models import Products, ProductCategory
+from products.models import Products, ProductCategory, WishList
 from products.serializer import (ProductSellerSerializerGet, 
                                  ProductSellerBuyerSerializer, 
-                                 ProductCategorySerializer)
+                                 ProductCategorySerializer, WishListSerializer)
 
 class ProductApiView(generics.ListCreateAPIView):
     queryset = Products.objects.all()
@@ -30,3 +30,14 @@ class ProductUpdateApiView(generics.RetrieveUpdateDestroyAPIView):
 class ProductCategoryApiView(generics.ListCreateAPIView):
     queryset = ProductCategory.objects.all()
     serializer_class = ProductCategorySerializer
+
+
+class WishListView(generics.RetrieveUpdateDestroyAPIView):
+     queryset = WishList.objects.all()
+     serializer_class = WishListSerializer
+     lookup_field = "pk"
+
+
+class AddWishListView(generics.ListCreateAPIView):
+     queryset = WishList.objects.all()
+     serializer_class = WishListSerializer
