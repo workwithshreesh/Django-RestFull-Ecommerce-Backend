@@ -32,3 +32,5 @@ class ReturnRequestOfSingleUser(serializers.ModelSerializer):
         fields = ["Return_Entry_Id","Return_Request_Id", "Product_Id", "RETURN_STATUS_CHOICES",
                   "Return_Status","Seller_Confirmation","Return_Quantity",
                   "Return_Remark","Confirmed_At"]
+        
+        
