@@ -40,6 +40,7 @@ class OrderItem(models.Model):
     product = models.ForeignKey(Products, on_delete=models.CASCADE)
     quantity = models.PositiveIntegerField()
     price = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
+    
 
     def __str__(self):
         return f"Item {self.product.name} in Order {self.order.id}"
